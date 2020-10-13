@@ -11,7 +11,7 @@ services:
     restart: unless-stopped
     working_dir: /var/www/
     volumes:
-      - ./:/var/www
+      - ./src/:/var/www
     networks:
       - laravel_8
 
@@ -38,7 +38,7 @@ services:
     ports:
       - "1234:80"
     volumes:
-      - ./:/var/www
+      - ./src/:/var/www
       - ./docker/nginx:/etc/nginx/conf.d
     networks:
       - laravel_8
