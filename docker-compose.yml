@@ -6,19 +6,19 @@ services:
         user: sammy
         uid: 1000
       context: ./
-      dockerfile: ./docker/php/Dockerfile
-    image: laravel-8
-    container_name: laravel-8-app
+      dockerfile: Dockerfile
+    image: laravel_8
+    container_name: laravel_8-app
     restart: unless-stopped
     working_dir: /var/www/
     volumes:
       - ./:/var/www
     networks:
-      - laravel-8
+      - laravel_8
 
   db:
     image: mysql:5.7
-    container_name: laravel-8-db
+    container_name: laravel_8-db
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}
@@ -30,11 +30,11 @@ services:
     volumes:
       - ./docker/mysql:/docker-entrypoint-initdb.d
     networks:
-      - laravel-8
+      - laravel_8
 
   nginx:
     image: nginx:alpine
-    container_name: laravel-8-nginx
+    container_name: laravel_8-nginx
     restart: unless-stopped
     ports:
       - "1234:80"
@@ -42,8 +42,8 @@ services:
       - ./:/var/www
       - ./docker/nginx:/etc/nginx/conf.d
     networks:
-      - laravel-8
+      - laravel_8
 
 networks:
-  laravel-8:
+  laravel_8:
     driver: bridge
